@@ -1,0 +1,154 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- Таблиця categories -->
+    <changeSet id="create-categories-schema" author="yuliia kushnir">
+        <createTable tableName="categories">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Таблиця products -->
+    <changeSet id="create-products-schema" author="yuliia kushnir">
+        <createTable tableName="products">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="CLOB"/>
+            <column name="gender" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="material" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <!-- Індекс на name -->
+        <createIndex tableName="products" indexName="idx_products_name">
+            <column name="name"/>
+        </createIndex>
+
+        <!-- Індекс на gender -->
+        <createIndex tableName="products" indexName="idx_products_gender">
+            <column name="gender"/>
+        </createIndex>
+
+        <!-- Індекс на material -->
+        <createIndex tableName="products" indexName="idx_products_material">
+            <column name="material"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Таблиця product_colors -->
+    <changeSet id="create-product-colors-schema" author="yuliia kushnir">
+        <createTable tableName="product_colors">
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_product_colors_product" references="products(id)"/>
+            </column>
+            <column name="color" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="product_colors" indexName="idx_product_colors_color">
+            <column name="color"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Таблиця product_categories -->
+    <changeSet id="create-product-categories-schema" author="yuliia kushnir">
+        <createTable tableName="product_categories">
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_product_categories_product" references="products(id)"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_product_categories_category" references="categories(id)"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="product_categories" indexName="idx_product_categories_product">
+            <column name="product_id"/>
+        </createIndex>
+
+        <createIndex tableName="product_categories" indexName="idx_product_categories_category">
+            <column name="category_id"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Таблиця images -->
+    <changeSet id="create-images-schema" author="yuliia kushnir">
+        <createTable tableName="images">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_images_product" references="products(id)"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="images" indexName="idx_images_product_id">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Заповнення таблиці категорій -->
+    <changeSet id="insert-categories" author="yuliia kushnir">
+        <insert tableName="categories">
+            <column name="name" value="Футболка"/>
+        </insert>
+        <insert tableName="categories">
+            <column name="name" value="Худі"/>
+        </insert>
+        <insert tableName="categories">
+            <column name="name" value="Поло"/>
+        </insert>
+        <insert tableName="categories">
+            <column name="name" value="Світшот"/>
+        </insert>
+        <insert tableName="categories">
+            <column name="name" value="Лонгслів"/>
+        </insert>
+        <insert tableName="categories">
+            <column name="name" value="Майка"/>
+        </insert>
+    </changeSet>
+<!--    <changeSet id="insert-categories" author="yuliia kushnir">-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="Класичний крій"/>-->
+<!--        </insert>-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="По фігурі"/>-->
+<!--        </insert>-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="Оверсайз"/>-->
+<!--        </insert>-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="Комфорт"/>-->
+<!--        </insert>-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="Лонгслів"/>-->
+<!--        </insert>-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="Поло"/>-->
+<!--        </insert>-->
+<!--        <insert tableName="categories">-->
+<!--            <column name="name" value="Щільна тканина"/>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+
+</databaseChangeLog>

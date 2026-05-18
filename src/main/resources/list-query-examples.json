@@ -1,0 +1,23 @@
+[
+  {
+    "categories": ["Футболка"],
+    "colors": ["WHITE"],
+    "material": "100% бавовна",
+    "gender": "MALE",
+    "page": 0,
+    "pageSize": 10
+  },
+  {
+    "material": "100% бавовна",
+    "page": 0,
+    "pageSize": 5
+  },
+  {
+    "categories": ["Худі"],
+    "colors": ["BLACK"],
+    "material": "95% бавовна, 5% еластан",
+    "gender": "UNISEX",
+    "page": 0,
+    "pageSize": 5
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Базова футболка",
+    "price": 399.00,
+    "description": "Класична футболка з коротким рукавом для щоденного носіння",
+    "categoryIds": [1],
+    "images": [],
+    "gender": "MALE",
+    "colors": ["WHITE"],
+    "material": "100% бавовна"
+  },
+  {
+    "name": "Худі з капюшоном",
+    "price": 799.00,
+    "description": "Тепле худі з капюшоном та кишенею-кенгуру",
+    "categoryIds": [2],
+    "images": [],
+    "gender": "UNISEX",
+    "colors": ["BLACK", "RED"],
+    "material": "95% бавовна, 5% еластан"
+  },
+  {
+    "name": "Oversize світшот",
+    "price": 699.00,
+    "description": "Комфортний світшот oversize для щоденного носіння",
+    "categoryIds": [4],
+    "images": [],
+    "gender": "UNISEX",
+    "colors": ["BLACK"],
+    "material": "100% бавовна"
+  },
+  {
+    "name": "Класичне поло",
+    "price": 599.00,
+    "description": "Поло з комірцем та ґудзиками, класичний крій",
+    "categoryIds": [3],
+    "images": [],
+    "gender": "MALE",
+    "colors": ["LIGHT_GREY", "BLACK"],
+    "material": "100% бавовна"
+  }
+]
