@@ -24,41 +24,42 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                                .anyRequest().permitAll()
 
-                        .requestMatchers(HttpMethod.GET,
-                                "/api/products/**",
-                                "/api/categories/**",
-                                "/api/stocks/**"
-                        ).permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/products/_list").permitAll()
-
-                        .requestMatchers(HttpMethod.POST, "/api/products/**")
-                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
-
-                        .requestMatchers(HttpMethod.PATCH, "/api/products/**")
-                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
-
-                        .requestMatchers(HttpMethod.DELETE, "/api/products/**")
-                        .hasAuthority("ROLE_ADMIN")
-
-                        .requestMatchers(HttpMethod.POST, "/api/categories/**")
-                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
-
-                        .requestMatchers(HttpMethod.DELETE, "/api/categories/**")
-                        .hasAuthority("ROLE_ADMIN")
-
-                        .requestMatchers("/api/stocks/all")
-                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_EXECUTOR", "ROLE_ADMIN")
-
-                        .requestMatchers(HttpMethod.POST, "/api/stocks/**")
-                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
-
-                        .requestMatchers(HttpMethod.PATCH, "/api/stocks/**")
-                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_EXECUTOR", "ROLE_ADMIN")
-
-                        .requestMatchers("/actuator/**").permitAll()
-
-                        .anyRequest().authenticated()
+//                        .requestMatchers(HttpMethod.GET,
+//                                "/api/products/**",
+//                                "/api/categories/**",
+//                                "/api/stocks/**"
+//                        ).permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/products/_list").permitAll()
+//
+//                        .requestMatchers(HttpMethod.POST, "/api/products/**")
+//                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
+//
+//                        .requestMatchers(HttpMethod.PATCH, "/api/products/**")
+//                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
+//
+//                        .requestMatchers(HttpMethod.DELETE, "/api/products/**")
+//                        .hasAuthority("ROLE_ADMIN")
+//
+//                        .requestMatchers(HttpMethod.POST, "/api/categories/**")
+//                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
+//
+//                        .requestMatchers(HttpMethod.DELETE, "/api/categories/**")
+//                        .hasAuthority("ROLE_ADMIN")
+//
+//                        .requestMatchers("/api/stocks/all")
+//                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_EXECUTOR", "ROLE_ADMIN")
+//
+//                        .requestMatchers(HttpMethod.POST, "/api/stocks/**")
+//                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_ADMIN")
+//
+//                        .requestMatchers(HttpMethod.PATCH, "/api/stocks/**")
+//                        .hasAnyAuthority("ROLE_MANAGER", "ROLE_EXECUTOR", "ROLE_ADMIN")
+//
+//                        .requestMatchers("/actuator/**").permitAll()
+//
+//                        .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwt ->
