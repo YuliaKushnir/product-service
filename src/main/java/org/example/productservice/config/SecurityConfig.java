@@ -58,7 +58,8 @@ public class SecurityConfig {
 
                         .requestMatchers("/actuator/**").permitAll()
 
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
+//                        .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwt ->
